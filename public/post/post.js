@@ -9,25 +9,19 @@ angular.module('Recipeople.post', [])
 })
 
 .factory('PostRecipeFactory', function($http) {
-  var postRecipe = function() {
+  var postRecipe = function(data) {
     return $http({
-      method: 'POST'
-      url: '/post'
-      data: {
-        recipes : title,
-        recipe : image_url,
-        recipe: ingredients, 
-        recipe: directions,
-        recipe: author,
-        recipe: likedBy,
-        recipe: dislikedBy,
-        recipe: groups,
-        recipe: reviews,
-      }
+      method: 'POST',
+      url: '/recipes',
+      data: data
     })
     .then(function(response) {
       return response.data;
     });
+  }
+
+  return {
+    postRecipe : postRecipe
   }
 
 });
